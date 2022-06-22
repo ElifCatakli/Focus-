@@ -20,7 +20,7 @@ extension ContentView {
         private var initialTime = 0
         private var endDate = Date()
         
-        // Start the timer with the given amount of minutes
+        //startet den Timer
         func start(minutes: Float) {
             self.initialTime = Int(minutes)
             self.endDate = Date()
@@ -28,21 +28,21 @@ extension ContentView {
             self.endDate = Calendar.current.date(byAdding: .minute, value: Int(minutes), to: endDate)!
         }
         
-        // Reset the timer
+        //setzt den Timer zurück
         func reset() {
             self.minutes = Float(initialTime)
             self.isActive = false
             self.time = "\(Int(minutes)):00"
         }
-        // Show updates of the timer
+        //aktualisiert den Counter
         func updateCountdown(){
             guard isActive else { return }
             
-            // Gets the current date and makes the time difference calculation
+            //Differenzrechnung
             let now = Date()
             let diff = endDate.timeIntervalSince1970 - now.timeIntervalSince1970
             
-            // Checks that the countdown is not <= 0
+            //prüft das der Countdown nicht <= 0
             if diff <= 0 {
                 self.isActive = false
                 self.time = "0:00"
@@ -50,13 +50,13 @@ extension ContentView {
                 return
             }
             
-            // Turns the time difference calculation into sensible data and formats it
+            //Zeitunterschued
             let date = Date(timeIntervalSince1970: diff)
             let calendar = Calendar.current
             let minutes = calendar.component(.minute, from: date)
             let seconds = calendar.component(.second, from: date)
 
-            // Updates the time string with the formatted time
+            //update
             self.minutes = Float(minutes)
             self.time = String(format:"%d:%02d", minutes, seconds)
         }
