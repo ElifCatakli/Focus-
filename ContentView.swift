@@ -23,7 +23,7 @@ struct ContentView: View {
                 }
                 .padding()
                 .frame(width: width)
-//                .background(.ultraThickMaterial)
+                //.background(.ultraThickMaterial) -> funktioniert nicht bei einer Apple Watch
                 .cornerRadius(20)
                 .overlay(
                         RoundedRectangle(cornerRadius: 20)
